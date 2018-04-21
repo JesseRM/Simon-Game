@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simon</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Iceberg" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="simonboard">
+            <div id="0" class="pad green"></div>
+            <div id="1" class="pad red"></div>
+            <div id="2" class="pad yellow"></div>
+            <div id="3" class="pad blue"></div>
+        </div>
+        <div class="main-menu">
+            <div class="title">Simon</div>
+            <div class="on"><span class="btn on-btn fa fa-power-off"></span></div>
+            <div class="counter">00</div>
+            <div class="play">
+                <span class="btn play-reset-btn fa fa-play"></span>
+            </div>
+            <div class="settings-menu">
+                <div class="difficulty">
+                    <ul class="options">
+                        <li class="btn easy-btn">Easy<span class="fa fa-check"></span></li>
+                        <li class="btn hard-btn">Hard</li>
+                        <li class="btn extreme-btn">Extreme</li>
+                        <li class="btn strict-btn">
+                            Strict<span class="fa fa-times-circle"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="button-block">
+                  <span class="btn settings-btn fa fa-cog"></span>
+                  <span class="btn off-btn fa fa-power-off"></span>
+                  <span class="btn audio-btn fa fa-volume-up"></span>
+            </div>
+        </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.min.js"></script>
+<script type="text/javascript" src="assets/js/simon2.js"></script>
+</body>
+</html>

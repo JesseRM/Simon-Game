@@ -1,0 +1,229 @@
+body {
+    background-color: #2f3135;
+    font-family: 'Rammetto One', cursive;
+}
+
+.fa-check {
+    color: #479681;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+.fa-check-circle {
+    color: #68a04f;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.2);
+}
+
+.on-btn {
+    font-size: 4.8rem;
+}
+
+.play-reset-btn {
+    font-size: 2.2rem;
+}
+
+.settings-btn {
+    font-size: 2rem;
+}
+
+.off-btn {
+    color: green;
+    font-size: 2rem;
+    margin: 0 1.5rem;
+}
+
+.audio-btn {
+    font-size: 2rem;
+}
+
+.strict-icon {
+    margin-left: 0.2rem;
+    color: red;
+}
+
+.button-block {
+    display: none;
+}
+
+.settings-menu {
+    display: none;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+.play {
+    display: none;
+    margin: 1rem auto;
+}
+
+.on {
+    color: #a80000;
+    margin: 2rem auto;
+}
+
+.title {
+    font-size: 2rem;
+    max-width: 50%;
+    margin: 1rem auto 0.2rem auto;
+}
+
+.counter {
+    display: none;
+    font-size: 2.5rem;
+    font-family: 'Iceberg', cursive;
+}
+
+.audio {
+    display: none;
+}
+
+.off {
+    display: none;
+}
+
+.simonboard {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.7rem;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    margin: 5rem auto;
+    max-width: 30rem;
+    height: 30rem;
+    max-height: 30rem;
+    position: relative;
+}
+
+.main-menu {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom:0;
+    max-width: 18rem;
+    height: 18rem;
+    background-color: #f8f3f3;
+    border-radius: 50%;
+    border: solid 2px black;
+    text-align: center;
+}
+
+.pad {
+    width: 100%;
+    height: 100%;
+    transform: scale(0);
+}
+
+.green {
+    background-color: #1fa210;
+    border-radius: 100% 0 0 0;
+    box-shadow: -10px -6px 30px -10px #8dff1c;
+}
+
+.green:active {
+    background-color: #5cff4c;
+}
+
+.red {
+    background-color: #a21018;
+    border-radius: 0 100% 0 0;
+    box-shadow: 10px -6px 30px -10px #ff2a1c;
+}
+
+.red:active {
+    background-color: #ff4c4c;
+}
+
+.yellow {
+    background-color: #9ba210;
+    border-radius: 0 0 0 100%;
+    box-shadow: -10px 6px 30px -10px #ffe31c;
+}
+
+.yellow:active {
+    background-color: #f7ff4c;
+}
+
+.blue {
+    background-color: #102ba2;
+    border-radius: 0 0 100% 0;
+    box-shadow: 10px 6px 30px -10px #1c80ff;
+}
+
+.blue:active {
+    background-color: #4c80ff;
+}
+
+
+/*****Animation Classes*****/
+.turn-on {
+    animation: turnon 1s linear;
+    animation-fill-mode: forwards;
+}
+
+.turn-off {
+    animation: turnoff 1s linear;
+    animation-fill-mode: forwards;
+}
+.rotate-on {
+    animation: rotate 1s linear;
+}
+
+.spin {
+    animation: rotate 4s linear infinite;
+}
+
+
+/*****Keyframes Animations*****/
+@keyframes turnon {
+    0%{transform:scale(0); opacity:0;}
+    50%{transform:scale(1.3); opacity:0.4; }
+    75%{transform:scale(0.9); opacity:0.7;}
+    100%{transform:scale(1); opacity:1;}
+}
+
+@keyframes turnoff {
+    0%{transform:scale(1); opacity:1;}
+    50%{transform:scale(0.9); opacity:0.7;}
+    75%{transform:scale(1.3); opacity:0.4;}
+    100%{transform:scale(0); opacity:0;}
+}
+
+@keyframes rotate {
+    to {transform: rotate(360deg);}
+}
+
+/*****Media Queries*****/
+@media screen and (max-width: 720px){
+    html {
+        font-size: 10px;
+    }
+
+    .wrapper {
+        max-width: 20rem;
+        max-height: 20rem;
+    }
+
+    .main-menu {
+        max-width: 12rem;
+        max-height: 12rem;
+    }
+}
+
