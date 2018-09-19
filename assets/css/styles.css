@@ -108,7 +108,7 @@ body {
     height: 30rem;
     max-height: 30rem;
     position: relative;
-    min-width: 15rem;
+    min-width: 30rem;
 }
 
 .main-menu {
@@ -215,7 +215,6 @@ body {
 @media screen and (max-width: 768px){
     .wrapper {
         transform: scale(0.70);
-        max-width: 26rem;
     }
 }
 
