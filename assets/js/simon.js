@@ -6,11 +6,11 @@ const buttons = {
     off: document.querySelector(".off-btn"),
     playReset: {
         elem: document.querySelector(".play-reset-btn"),
-        setPlay: function(){
+        setPlay: function() {
             buttons.playReset.elem.classList.remove(icons.reset);
             buttons.playReset.elem.classList.add(icons.play);
         },
-        setReset: function(){
+        setReset: function() {
             buttons.playReset.elem.classList.remove(icons.play);
             buttons.playReset.elem.classList.add(icons.reset);
         }
@@ -39,10 +39,10 @@ let game = {
 const containers = {
     pads: {
         elem: document.querySelector(".simonboard"),
-        setSpin: function(){
+        setSpin: function() {
             containers.pads.elem.classList.add("spin");
         },
-        removeSpin: function(){
+        removeSpin: function() {
             containers.pads.elem.classList.remove("spin");
         }
     },
@@ -99,13 +99,13 @@ const activeColors = {
 }
 
 buttons.on.addEventListener("click", () => {
-    if(game.on === false){
+    if (game.on === false) {
         turnGameOn();
     }
 });
 
 buttons.off.addEventListener("click", () => {
-    if(game.on === true){
+    if (game.on === true) {
         turnGameOff();
     }
 });
@@ -127,9 +127,9 @@ buttons.strict.addEventListener("click", () => {
 });
 
 buttons.playReset.elem.addEventListener("click", () => {
-    if(game.running === false){
+    if (game.running === false) {
         game.running = true;
-        if(game.difficulty === "Extreme"){
+        if (game.difficulty === "Extreme") {
             containers.pads.setSpin();
         }
         buttons.playReset.setReset();
@@ -141,7 +141,7 @@ buttons.playReset.elem.addEventListener("click", () => {
 });
 
 buttons.settings.addEventListener("click", () => {
-    if(game.menuOn === false){
+    if (game.menuOn === false) {
         containers.play.style.display = "none";
         counter.style.display = "none";
         containers.settings.style.display = "block";
@@ -156,11 +156,11 @@ buttons.settings.addEventListener("click", () => {
 
 pads.forEach((pad) => {
     pad.addEventListener("click", () => {
-        if(game.sequencePlaying === false && game.running === true){
+        if (game.sequencePlaying === false && game.running === true) {
             sounds[pad.id].sound.play();
             clearTimeout(timeouts.user); //clear timeout that waits 5 sec for user response
-            if(pad.id == game.sequence[game.currentIndex]){
-                if(checkWin()){
+            if (pad.id == game.sequence[game.currentIndex]) {
+                if (checkWin()) {
                     gameWon();
                 } else {
                     game.currentIndex++;
@@ -171,7 +171,7 @@ pads.forEach((pad) => {
 
                         //Give user 5 secs to click next pad in sequence
                         timeouts.user = setTimeout(() => {
-                            if(game.currentIndex === c){
+                            if (game.currentIndex === c) {
                                 lose();
                             }
                         }, 5000)
@@ -180,31 +180,31 @@ pads.forEach((pad) => {
             } else {
                 lose();
             }
-        } else if (game.sequencePlaying === false){
+        } else if (game.sequencePlaying === false) {
             sounds[pad.id].sound.play(); //if game is not running simply play sound
         }
     });
 });
 
-function start(){
+function start() {
     game.running = true;
     updateCounter();
     updateSequence();
     playSequence();
 }
 
-function checkWin(){
+function checkWin() {
     return game.currentIndex === 19 ? true: false;
 }
 
-function gameWon(){
+function gameWon() {
     counter.textContent = "U WIN!";
 }
 
-function lose(){
+function lose() {
     game.sequencePlaying = true; //keep pad from playing during lose function
     counter.textContent = "U LOSE!";
-    if(game.strict === true){
+    if (game.strict === true) {
         timeouts.continue = setTimeout(() => {
             reset("game");
             start();
@@ -217,7 +217,7 @@ function lose(){
     }
 }
 
-function reset(mode){
+function reset(mode) {
     clearTimeout(timeouts.user);
     timeouts.pads.forEach(function(pad) {
         console.log(pad);
@@ -230,14 +230,14 @@ function reset(mode){
     game.currentIndex = 0;
     game.running = false;
     game.sequencePlaying = false;
-    if(mode === "user"){
-        if(game.difficulty === "Extreme"){
+    if (mode === "user") {
+        if (game.difficulty === "Extreme") {
             containers.pads.removeSpin();
         }
     }
 }
 
-function turnGameOff(){
+function turnGameOff() {
     game.on = false;
 
     deActivateControls();
@@ -262,27 +262,27 @@ function turnGameOff(){
         }
 }
 
-function playSequence(sequence){
+function playSequence(sequence) {
     game.sequencePlaying = true;
     let sec = 0;
-    if(game.difficulty === "Easy" || game.difficulty === "Extreme"){
+    if (game.difficulty === "Easy" || game.difficulty === "Extreme") {
         sec = 1000;
-    } else if(game.difficulty === "Hard"){
+    } else if (game.difficulty === "Hard") {
         sec = 500;
     }
 
-    for(let i = 0; i < game.sequence.length; i++){
+    for (let i = 0; i < game.sequence.length; i++) {
         let index = game.sequence[i];
         timeouts.pads[i] = setTimeout(() => {
             sounds[index].sound.play();
             pads[index].style.backgroundColor = getActiveColor(pads[index]);
             timeouts.pads[i + 1] = setTimeout(() => {
                 pads[index].style.cssText = "";
-                if(i + 1  >= game.sequence.length && game.running === true){
+                if (i + 1  >= game.sequence.length && game.running === true) {
                     game.sequencePlaying = false;
                     //Giver user 5 seconds to respond
                     timeouts.user = setTimeout(() => {
-                            if(game.currentIndex === 0){
+                            if (game.currentIndex === 0) {
                                 lose();
                             }
                         }, 5000);
@@ -293,35 +293,35 @@ function playSequence(sequence){
     game.currentIndex = 0;
 }
 
-function updateCounter(){
+function updateCounter() {
     game.counter++;
     counter.textContent = game.counter < 10 ? "0" + game.counter: game.counter;
 }
 
-function getActiveColor(elem){
-    if(elem.id == 0){
+function getActiveColor(elem) {
+    if (elem.id == 0) {
         return activeColors.green;
-    } else if(elem.id == 1){
+    } else if (elem.id == 1) {
         return activeColors.red;
-    } else if(elem.id == 2){
+    } else if (elem.id == 2) {
         return activeColors.yellow;
-    } else if(elem.id == 3){
+    } else if (elem.id == 3) {
         return activeColors.blue;
     }
 }
 
-function updateSequence(){
+function updateSequence() {
     game.sequence.push(Math.floor(Math.random() * 4));
 }
 
-function turnGameOn(){
+function turnGameOn() {
     game.on = true;
 
     padsAnimation("on");
     activateControls();
 }
 
-function activateControls(){
+function activateControls() {
     containers.on.classList.toggle("turn-off");
 
     setTimeout(() => {
@@ -348,13 +348,13 @@ function activateControls(){
 }
 
 function deActivateControls(){
-    if(containers.settings.style.display === "block"){
+    if (containers.settings.style.display === "block") {
         containers.settings.classList.add("turn-off");
         setTimeout(() => {
             containers.settings.style.display = "none";
             containers.settings.classList.remove("turn-off");
             game.menuOn = false;
-        },1100);
+        }, 1100);
     }
     counter.classList.add("turn-off");
     setTimeout(() => {
@@ -378,14 +378,14 @@ function deActivateControls(){
     }, 1300);
 }
 
-function padsAnimation(state){
-    if(state === "on"){
+function padsAnimation(state) {
+    if (state === "on") {
         containers.pads.elem.classList.toggle("rotate-on");
         pads.forEach((pad) => {
             pad.classList.remove("turn-off");
             pad.classList.add("turn-on");
         });
-    } else if(state === "off"){
+    } else if (state === "off") {
         containers.pads.elem.classList.toggle("rotate-on");
         pads.forEach((pad) => {
             pad.classList.add("turn-off");
@@ -394,10 +394,10 @@ function padsAnimation(state){
     }
 }
 
-function handleDifficulty(difficulty){
+function handleDifficulty(difficulty) {
     switch (difficulty) {
         case "Easy":
-            if(game.difficulty === "Easy"){
+            if (game.difficulty === "Easy") {
                 break;
             } else {
                 game.currentCheck.innerHTML = game.difficulty;
@@ -407,7 +407,7 @@ function handleDifficulty(difficulty){
                 break;
             }
         case "Hard":
-            if(game.difficulty === "Hard"){
+            if (game.difficulty === "Hard") {
                 break;
             } else {
                 game.currentCheck.innerHTML = game.difficulty;
@@ -417,7 +417,7 @@ function handleDifficulty(difficulty){
                 break;
             }
         case "Extreme":
-            if(game.difficulty === "Extreme"){
+            if (game.difficulty === "Extreme") {
                 break;
             } else {
                 game.currentCheck.innerHTML = game.difficulty;
@@ -429,8 +429,8 @@ function handleDifficulty(difficulty){
     }
 }
 
-function handleStrict(){
-    if(game.strict === false){
+function handleStrict() {
+    if (game.strict === false) {
         game.strict = true;
         buttons.strict.innerHTML = `Strict<span class='fa ${icons.checkCircle} '></span>`;
     } else {
