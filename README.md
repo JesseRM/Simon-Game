@@ -2,6 +2,8 @@
 A Simon game with a with a built in menu. The traditional Simon game requires that sounds and the lighting up of pads run in a certain sequence after a certain amount of time.  The purpose of the project was to begin understand how to run a sequence of operations in JavaScript using methods such as `seInterval` `setTimeout` `clearInterval`.  I also wanted to add a bit of functionality by adding a menu where the user could select a difficulty.
 
 ## Usage
+[Live Demo](https://jesserm.github.io/Simon-Game/)
+
 Click on the power button to "boot" up the game and then click the "play" button to begin a round. 
 
 The settngs menu offers three difficulty settings:
